@@ -1,20 +1,23 @@
-/* 기본 초기화 */
+/* 1. 기본 초기화 및 폰트 설정 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
   background-color: #fff;
   color: #333;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* 중앙 정렬용 컨테이너 (배너 폭 1920px 기준 공통 적용) */
+/* 2. 공통 레이아웃 (1920px 중앙 정렬) */
 header nav,
+.main-banner,
 .common-banner,
+.content-section,
 .zigzag-section,
 .footer-container {
   width: 100%;
@@ -22,13 +25,14 @@ header nav,
   margin: 0 auto;
 }
 
-/* Header: 메인과 동일하게 높이 고정 및 스트로크 제거 */
+/* 3. Header: 모든 페이지 공통 적용 */
 header {
   width: 100%;
-  background: #fff;
   height: 80px;
   display: flex;
   align-items: center;
+  background: #fff;
+  z-index: 1000;
 }
 
 nav {
@@ -37,6 +41,7 @@ nav {
   align-items: center;
   position: relative;
   padding: 0 40px;
+  width: 100%;
 }
 
 .nav-links {
@@ -47,16 +52,23 @@ nav {
 .nav-links a {
   text-decoration: none;
   color: #333;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #000;
 }
 
 .logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-weight: bold;
+  font-weight: 800;
   font-size: 22px;
+  letter-spacing: 0.2em;
 }
 
 .logo a {
@@ -64,18 +76,27 @@ nav {
   text-decoration: none;
 }
 
-/* Banner Slider: 스트로크 제거 */
+/* 4. Banner (Main & Collection 공통) */
+.main-banner,
 .common-banner {
-  aspect-ratio: 1920 / 1080;
+  aspect-ratio: 16 / 9; /* 1920x1080 비율 유지 */
   position: relative;
   overflow: hidden;
-  background: #f0f0f0;
+  background: #f4f4f4;
+}
+
+.main-banner img,
+.main-banner video,
+.slider-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .slider-wrapper {
   display: flex;
   height: 100%;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .common-slide {
@@ -84,46 +105,112 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .slider-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .dot {
   width: 10px;
   height: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 50%;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .dot.active {
-  background: #333;
+  background: #000;
 }
 
-/* Zigzag Layout: 스트로크 제거 */
+/* 5. Main Grid Content (index.html 용) */
+.content-section {
+  padding: 150px 40px;
+}
+
+.section-header {
+  margin-bottom: 120px;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.section-header p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #888;
+  line-height: 2;
+  font-size: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 120px 40px;
+}
+
+.img-link {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.img-box {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #f7f7f7;
+  overflow: hidden;
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-link:hover .img-box img {
+  transform: scale(1.05);
+}
+
+.card-text {
+  font-size: 12px;
+  font-family: "Courier New", Courier, monospace;
+  color: #999;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* 6. Zigzag Section (Collection.html 용) */
 .zigzag-section {
   background: #fff;
 }
 
 .section-intro {
-  padding: 100px 20px;
+  padding: 120px 40px;
   text-align: center;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .feature-row {
   display: flex;
   width: 100%;
-  height: 650px;
+  align-items: stretch;
 }
 
 .feature-row.reverse {
@@ -132,32 +219,26 @@ nav {
 
 .media-box {
   flex: 1;
+  aspect-ratio: 4 / 3; /* 요청하신 이미지 비율 */
   position: relative;
   overflow: hidden;
   background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.base-img {
+.base-img,
+.hover-vid {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.3s;
-}
-
-.hover-vid {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s ease-in-out;
 }
 
+.hover-vid {
+  opacity: 0;
+}
 .media-box:hover .base-img {
   opacity: 0;
 }
@@ -167,32 +248,35 @@ nav {
 
 .text-box {
   flex: 1;
-  padding: 80px;
+  padding: 0 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
 }
 
 .text-box h3 {
   font-size: 32px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  letter-spacing: 0.05em;
 }
 
 .text-box p {
   font-size: 16px;
   color: #666;
-  line-height: 1.8;
   margin-bottom: 40px;
+  line-height: 1.8;
 }
 
 .learn-more {
-  padding: 14px 40px;
+  width: fit-content;
+  padding: 15px 45px;
   border: 1px solid #000;
   background: none;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  font-size: 13px;
+  text-transform: uppercase;
+  transition: all 0.3s;
 }
 
 .learn-more:hover {
@@ -200,35 +284,35 @@ nav {
   color: #fff;
 }
 
-/* Footer: 메인 푸터 기준으로 완전히 수정 */
+/* 7. Footer (공통) */
 footer {
   width: 100%;
   background: #f9f9f9;
-  padding: 100px 0; /* 배경은 100% 차오르게 설정 */
+  padding: 120px 0;
 }
 
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0 40px; /* 내부 좌우 여백 */
+  padding: 0 40px;
 }
 
 .footer-info h3 {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 25px;
-  font-weight: bold;
+  font-weight: 800;
+  letter-spacing: 0.1em;
 }
 
 .footer-info p {
-  font-size: 14px;
-  color: #888;
-  line-height: 1.8;
+  font-size: 13px;
+  color: #aaa;
 }
 
 .footer-links {
   display: flex;
-  gap: 80px;
+  gap: 100px;
 }
 
 .link-col {
@@ -238,34 +322,72 @@ footer {
 }
 
 .link-col strong {
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 8px;
   color: #333;
+  text-transform: uppercase;
 }
 
 .link-col a {
   text-decoration: none;
-  color: #888;
-  font-size: 13px;
-  transition: color 0.2s;
+  color: #999;
+  font-size: 12px;
+  transition: color 0.3s;
 }
 
 .link-col a:hover {
   color: #000;
 }
 
-/* 반응형 처리 */
-@media (max-width: 768px) {
+/* 8. Responsive */
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .feature-row {
-    height: auto;
     flex-direction: column !important;
   }
-  .footer-container {
-    flex-direction: column;
-    gap: 50px;
+  .media-box {
+    aspect-ratio: 16 / 9;
   }
-  .footer-links {
-    gap: 40px;
-    flex-wrap: wrap;
+  .text-box {
+    padding: 60px 40px;
   }
+}
+
+.media-box {
+  flex: 1;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+  /* 검정색 배경 삭제 (깜빡임 원인) */
+  background: transparent;
+}
+
+.base-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; /* 사진이 위로 */
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out; /* 부드러운 전환 */
+}
+
+.hover-vid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* 영상이 아래로 */
+  opacity: 1; /* 영상은 항상 켜져 있고 사진 투명도만 조절 */
+}
+
+/* 호버 시 사진만 투명하게 만들어서 영상이 드러나게 함 */
+.media-box:hover .base-img {
+  opacity: 0;
 }

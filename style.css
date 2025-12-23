@@ -1,34 +1,38 @@
-/* 기본 초기화 */
+/* 1. 기본 초기화 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
   background-color: #fff;
   color: #333;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* 중앙 정렬용 컨테이너 (배너 폭 1920px 기준) */
+/* 2. 공통 레이아웃 (1920px 중앙 정렬) */
 header nav,
 .main-banner,
+.common-banner,
 .content-section,
+.zigzag-section,
 .footer-container {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
 }
 
-/* Header: 스트로크 제거 및 정렬 */
+/* 3. Header: 모든 페이지 고정 */
 header {
   width: 100%;
-  background: #fff;
   height: 80px;
   display: flex;
   align-items: center;
+  background: #fff;
+  z-index: 1000;
 }
 
 nav {
@@ -37,6 +41,7 @@ nav {
   align-items: center;
   position: relative;
   padding: 0 40px;
+  width: 100%;
 }
 
 .nav-links {
@@ -46,160 +51,342 @@ nav {
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
-  font-size: 14px;
+  color: #333 !important; /* 보라색 방지 */
+  font-size: 13px;
   font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 0.6;
 }
 
 .logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-weight: bold;
+  font-weight: 800;
   font-size: 22px;
+  letter-spacing: 0.2em;
 }
 
 .logo a {
-  color: #000;
+  color: #000 !important;
   text-decoration: none;
 }
 
-/* Main Banner: 1920x1080 고정 비율 */
-.main-banner {
-  aspect-ratio: 1920 / 1080;
+/* 4. Banner Section */
+.main-banner,
+.common-banner {
+  aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
-  background: #eee;
+  background: #f4f4f4;
 }
 
-.main-banner img,
-.main-banner video {
-  width: 100%;
+.slider-wrapper {
+  display: flex;
   height: 100%;
-  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Grid Content: 4x3 레이아웃 및 간격 조정 */
+.common-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #000;
+}
+
+/* 5. Main Grid Content (index.html) */
 .content-section {
-  padding: 120px 40px;
+  padding: 150px 40px;
 }
 
 .section-header {
-  margin-bottom: 80px;
+  margin-bottom: 120px;
   text-align: center;
 }
 
 .section-header h2 {
   font-size: 32px;
-  margin-bottom: 20px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-weight: 800;
 }
 
 .section-header p {
   max-width: 800px;
   margin: 0 auto;
-  color: #666;
+  color: #888;
+  line-height: 2;
+  font-size: 15px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4열 */
-  gap: 100px 30px; /* 행 간격 100px로 확대, 열 간격 30px */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 120px 40px;
 }
 
-.card {
-  text-align: left;
+.img-link {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 20px;
 }
 
 .img-box {
   width: 100%;
   aspect-ratio: 1/1;
-  background: #f0f0f0; /* 선 대신 면으로 영역 표시 */
-  margin-bottom: 20px;
+  background: #f7f7f7;
+  overflow: hidden;
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-link:hover .img-box img {
+  transform: scale(1.05);
 }
 
 .card-text {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 12px;
+  font-family: "Courier New", Courier, monospace;
+  color: #999;
   margin-bottom: 12px;
+  letter-spacing: 0.05em;
 }
 
+/* 6. Zigzag Section (Collection Pages) */
+.zigzag-section {
+  background: #fff;
+}
+
+.section-intro {
+  padding: 120px 40px;
+  text-align: center;
+}
+
+.feature-row {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.feature-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.media-box {
+  flex: 1;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+  background: transparent; /* 깜빡임 방지 */
+}
+
+.base-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.hover-vid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.media-box:hover .base-img {
+  opacity: 0;
+}
+
+.text-box {
+  flex: 1;
+  padding: 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-box h3 {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+.text-box p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* 7. 최종 수정된 미니멀 버튼 (보라색 방지 포함) */
 .learn-more {
-  font-size: 13px;
-  color: #000;
+  display: inline-block;
+  padding: 5px 0;
+  border: none;
+  background: none !important;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: #000 !important; /* 링크 색상 강제 고정 */
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   text-decoration: none;
-  font-weight: bold;
+
+  border-bottom: 1px solid #000; /* 하단 선 포인트 */
+  cursor: pointer;
+  transition: opacity 0.3s;
 }
 
-/* Footer: 배경은 100%, 내용은 중앙 정렬 */
+.learn-more:hover {
+  opacity: 0.5;
+  color: #000 !important;
+}
+
+/* 모든 링크 방문 후 보라색 변환 원천 차단 */
+a:visited {
+  color: inherit !important;
+}
+
+/* 8. Footer */
 footer {
   width: 100%;
   background: #f9f9f9;
-  padding: 100px 0; /* 상하 여백 */
+  padding: 120px 0;
 }
 
 .footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 0 40px; /* 내부 좌우 여백 */
+  padding: 0 40px;
 }
 
 .footer-info h3 {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 25px;
-  font-weight: bold;
+  font-weight: 800;
+  letter-spacing: 0.1em;
 }
-
 .footer-info p {
-  font-size: 14px;
-  color: #888;
-  line-height: 1.8;
+  font-size: 13px;
+  color: #aaa;
 }
-
 .footer-links {
   display: flex;
-  gap: 80px;
+  gap: 100px;
 }
-
 .link-col {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
 .link-col strong {
-  font-size: 14px;
-  margin-bottom: 8px;
+  font-size: 12px;
   color: #333;
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
-
 .link-col a {
   text-decoration: none;
-  color: #888;
-  font-size: 13px;
-  transition: color 0.2s;
+  color: #999 !important;
+  font-size: 12px;
 }
-
 .link-col a:hover {
-  color: #000;
+  color: #000 !important;
 }
 
-/* 반응형 처리 */
-@media (max-width: 1200px) {
-  .grid-container {
-    gap: 60px 20px;
-  }
-}
-@media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 1024px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
-  .footer-container {
-    flex-direction: column;
-    gap: 50px;
+  .feature-row {
+    flex-direction: column !important;
   }
-  .footer-links {
-    gap: 40px;
-    flex-wrap: wrap;
+  .media-box {
+    aspect-ratio: 16 / 9;
   }
+  .text-box {
+    padding: 60px 40px;
+  }
+}
+.main-banner {
+  width: 100%;
+  max-width: 1920px;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #000; /* 이미지 로딩 전 배경색 */
+}
+
+.main-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 비율 유지하며 꽉 채움 */
+  display: block;
+}
+
+/* 이미지 위 텍스트 스타일 (필요 없으면 삭제 가능) */
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+}
+
+.banner-text h1 {
+  font-size: 60px;
+  letter-spacing: 0.3em;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.banner-text p {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
 }

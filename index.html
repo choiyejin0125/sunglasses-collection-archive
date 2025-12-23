@@ -3,45 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>메인 페이지</title>
+    <title>TRIAD ARCHIVE - Perspective Triad</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
       <nav>
         <div class="nav-links">
-          <a href="collection1.html">Link 1</a>
-          <a href="collection2.html">Link 2</a>
-          <a href="collection3.html">Link 3</a>
+          <a href="collection1.html">01. ORIGIN</a>
+          <a href="collection2.html">02. PROCESS</a>
+          <a href="collection3.html">03. RESULT</a>
         </div>
-
         <div class="logo">
-          <a href="index.html" style="text-decoration: none; color: inherit"
-            >타이틀</a
-          >
+          <a href="index.html">TRIAD ARCHIVE</a>
         </div>
       </nav>
     </header>
 
     <section class="main-banner">
-      <div class="banner-placeholder">Main Banner (1920 x 1080)</div>
+      <img src="img/main.png" alt="Origin Sequence Visual" />
+
+      <div class="banner-text"></div>
     </section>
 
     <section class="content-section">
       <div class="section-header">
-        <h2>Your Best Value Proposition</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <h2>The Sequences</h2>
+        <p>
+          하나의 창조물이 완성되기까지의 과정을 세 가지 장면으로 기록합니다.
+          <br />
+          <strong>01. Origin</strong>, <strong>02. Process</strong>, 그리고
+          <strong>03. Result</strong>. <br />
+          불필요한 수식을 제외하고 객관적으로 분류된 데이터 시퀀스를
+          탐험하십시오.
+        </p>
       </div>
       <div class="grid-container">
         <script>
           for (let i = 1; i <= 12; i++) {
+            // 줄 번호 계산 (1~4: 1줄, 5~8: 2줄, 9~12: 3줄)
+            let link = "";
+            let seqName = "";
+
+            if (i <= 4) {
+              link = "collection1.html";
+              seqName = "01. ORIGIN";
+            } else if (i <= 8) {
+              link = "collection2.html";
+              seqName = "02. PROCESS";
+            } else {
+              link = "collection3.html";
+              seqName = "03. RESULT";
+            }
+
             document.write(`
-                <div class="card">
-                    <div class="img-box"></div>
-                    <p class="card-text">Product Item ${i}</p>
-                    <a href="#" class="learn-more">Learn More</a>
-                </div>
-            `);
+          <div class="card">
+              <a href="${link}" class="img-link">
+                  <div class="img-box">
+                      <img src="img/${i}.png" alt="Sequence ${i}">
+                  </div>
+              </a>
+              <p class="card-text">SEQ-${String(i).padStart(
+                2,
+                "0"
+              )} / ${seqName}</p>
+              <a href="${link}" class="learn-more">View Sequence</a>
+          </div>
+      `);
           }
         </script>
       </div>
@@ -50,34 +78,32 @@
     <footer>
       <div class="footer-container">
         <div class="footer-info">
-          <h3>FOOTER</h3>
-          <p>© 2010 — 2020</p>
-          <p>Privacy — Terms</p>
+          <h3>TRIAD ARCHIVE</h3>
+          <p>
+            Three Layers of Observation<br />Recording the sequence from origin
+            to result.
+          </p>
+          <br />
+          <p class="copyright">© 2025. All Rights Reserved.</p>
         </div>
+
         <div class="footer-links">
           <div class="link-col">
-            <strong>Product</strong>
-            <a href="#">Product</a>
-            <a href="#">Product</a>
-            <a href="#">Product</a>
+            <strong>Sequences</strong>
+            <a href="collection1.html">01. Origin</a>
+            <a href="collection2.html">02. Process</a>
+            <a href="collection3.html">03. Result</a>
           </div>
           <div class="link-col">
-            <strong>Features</strong>
-            <a href="#">Feature</a>
-            <a href="#">Feature</a>
-            <a href="#">Feature</a>
+            <strong>Connect</strong>
+            <a href="mailto:info@triad-archive.com">Email</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="#">Archive Map</a>
           </div>
           <div class="link-col">
-            <strong>Resources</strong>
-            <a href="#">Resource</a>
-            <a href="#">Resource</a>
-            <a href="#">Resource</a>
-          </div>
-          <div class="link-col">
-            <strong>Company</strong>
-            <a href="#">Company</a>
-            <a href="#">Company</a>
-            <a href="#">Company</a>
+            <strong>Legal</strong>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
           </div>
         </div>
       </div>
