@@ -1,0 +1,205 @@
+/* 기본 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 중앙 정렬용 컨테이너 (배너 폭 1920px 기준) */
+header nav,
+.main-banner,
+.content-section,
+.footer-container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* Header: 스트로크 제거 및 정렬 */
+header {
+  width: 100%;
+  background: #fff;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.logo a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Main Banner: 1920x1080 고정 비율 */
+.main-banner {
+  aspect-ratio: 1920 / 1080;
+  position: relative;
+  overflow: hidden;
+  background: #eee;
+}
+
+.main-banner img,
+.main-banner video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Grid Content: 4x3 레이아웃 및 간격 조정 */
+.content-section {
+  padding: 120px 40px;
+}
+
+.section-header {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.section-header p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #666;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4열 */
+  gap: 100px 30px; /* 행 간격 100px로 확대, 열 간격 30px */
+}
+
+.card {
+  text-align: left;
+}
+
+.img-box {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #f0f0f0; /* 선 대신 면으로 영역 표시 */
+  margin-bottom: 20px;
+}
+
+.card-text {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.learn-more {
+  font-size: 13px;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Footer: 배경은 100%, 내용은 중앙 정렬 */
+footer {
+  width: 100%;
+  background: #f9f9f9;
+  padding: 100px 0; /* 상하 여백 */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 40px; /* 내부 좌우 여백 */
+}
+
+.footer-info h3 {
+  font-size: 18px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.footer-info p {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+
+.link-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-col strong {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.link-col a {
+  text-decoration: none;
+  color: #888;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.link-col a:hover {
+  color: #000;
+}
+
+/* 반응형 처리 */
+@media (max-width: 1200px) {
+  .grid-container {
+    gap: 60px 20px;
+  }
+}
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-container {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .footer-links {
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+}

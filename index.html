@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메인 페이지</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-links">
+          <a href="collection1.html">Link 1</a>
+          <a href="collection2.html">Link 2</a>
+          <a href="collection3.html">Link 3</a>
+        </div>
+
+        <div class="logo">
+          <a href="index.html" style="text-decoration: none; color: inherit"
+            >타이틀</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <section class="main-banner">
+      <div class="banner-placeholder">Main Banner (1920 x 1080)</div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-header">
+        <h2>Your Best Value Proposition</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </div>
+      <div class="grid-container">
+        <script>
+          for (let i = 1; i <= 12; i++) {
+            document.write(`
+                <div class="card">
+                    <div class="img-box"></div>
+                    <p class="card-text">Product Item ${i}</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+            `);
+          }
+        </script>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-info">
+          <h3>FOOTER</h3>
+          <p>© 2010 — 2020</p>
+          <p>Privacy — Terms</p>
+        </div>
+        <div class="footer-links">
+          <div class="link-col">
+            <strong>Product</strong>
+            <a href="#">Product</a>
+            <a href="#">Product</a>
+            <a href="#">Product</a>
+          </div>
+          <div class="link-col">
+            <strong>Features</strong>
+            <a href="#">Feature</a>
+            <a href="#">Feature</a>
+            <a href="#">Feature</a>
+          </div>
+          <div class="link-col">
+            <strong>Resources</strong>
+            <a href="#">Resource</a>
+            <a href="#">Resource</a>
+            <a href="#">Resource</a>
+          </div>
+          <div class="link-col">
+            <strong>Company</strong>
+            <a href="#">Company</a>
+            <a href="#">Company</a>
+            <a href="#">Company</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

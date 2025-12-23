@@ -1,0 +1,271 @@
+/* 기본 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 중앙 정렬용 컨테이너 (배너 폭 1920px 기준 공통 적용) */
+header nav,
+.common-banner,
+.zigzag-section,
+.footer-container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* Header: 메인과 동일하게 높이 고정 및 스트로크 제거 */
+header {
+  width: 100%;
+  background: #fff;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.logo a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Banner Slider: 스트로크 제거 */
+.common-banner {
+  aspect-ratio: 1920 / 1080;
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.slider-wrapper {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.common-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #333;
+}
+
+/* Zigzag Layout: 스트로크 제거 */
+.zigzag-section {
+  background: #fff;
+}
+
+.section-intro {
+  padding: 100px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-row {
+  display: flex;
+  width: 100%;
+  height: 650px;
+}
+
+.feature-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.media-box {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+
+.hover-vid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.media-box:hover .base-img {
+  opacity: 0;
+}
+.media-box:hover .hover-vid {
+  opacity: 1;
+}
+
+.text-box {
+  flex: 1;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.text-box h3 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.text-box p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.learn-more {
+  padding: 14px 40px;
+  border: 1px solid #000;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.learn-more:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Footer: 메인 푸터 기준으로 완전히 수정 */
+footer {
+  width: 100%;
+  background: #f9f9f9;
+  padding: 100px 0; /* 배경은 100% 차오르게 설정 */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 40px; /* 내부 좌우 여백 */
+}
+
+.footer-info h3 {
+  font-size: 18px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.footer-info p {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+
+.link-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-col strong {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.link-col a {
+  text-decoration: none;
+  color: #888;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.link-col a:hover {
+  color: #000;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+  .feature-row {
+    height: auto;
+    flex-direction: column !important;
+  }
+  .footer-container {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .footer-links {
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+}
